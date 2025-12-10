@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/users" method="POST">
+        <label>Name:</label>
+        <input type="text" name="name" value="<%= formData?.name || '' %>">
+          <% if (errors?.name) { %>
+            <p class="error"><%= errors.name.message %></p>
+          <% } %>
+        <label>Age:</label>
+        <input type="number" name="age" value="<%= formData?.age || '' %>">
+          <% if (errors?.age) { %>
+            <p class="error"><%= errors.age.message %></p>
+          <% } %>
+        <label>Course:</label>
+        <select name="course">
+          <option value="">-- Select --</option>
+          <option value="BSIT" <%= formData?.course === "BSIT" ? "selected" : "" %>>BSIT</option>
+          <option value="BSCS" <%= formData?.course === "BSCS" ? "selected" : "" %>>BSCS</option>
+          <option value="BSIS" <%= formData?.course === "BSIS" ? "selected" : "" %>>BSIS</option>
+        </select>
+          <% if (errors?.course) { %>
+            <p class="error"><%= errors.course.message %></p>
+          <% } %>
+        <button type="submit">Save</button>
+</form>
+</body>
+</html>
