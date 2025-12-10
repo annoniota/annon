@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+
 const protect = (req, res, next) => {
   if (!req.session.uid) {
     return res.redirect("/user/login");
