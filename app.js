@@ -17,6 +17,7 @@ app.set("view engine", "ejs");
 
 app.use("/user", userRoute);
 connectDb();
+
 app.use((req, res) => {
   res.render("404");
 });
