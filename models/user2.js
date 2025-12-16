@@ -19,10 +19,6 @@ const StudentSchema = new mongoose.Schema(
       enum: ["BSIT", "BSCS", "BMMA", "BSEDU"],
       required: true,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
   },
   {
     timestamps: true,

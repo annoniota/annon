@@ -7,18 +7,21 @@
   </head>
   <body>
     You are logged in
-
     <table>
       <tr>
         <th>Username</th>
         <th>Email</th>
         <th>Password</th>
+        <th>Created At</th>
+        <th>Updated At</th>
       </tr>
       <%users.forEach((e)=>{%>
       <tr>
         <td><%=e.username%></td>
         <td><%=e.email%></td>
         <td><%=e.password%></td>
+        <td><%=new Date(e.createdAt).toLocaleString()%></td>
+        <td><%=new Date(e.updatedAt).toLocaleString()%></td>
       </tr>
       <% })%>
     </table>
