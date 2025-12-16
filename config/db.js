@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const connectDb = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/login");
-    console.log("connected");
-  } catch (e) {
-    console.log(`Error${e}`);
+    await mongoose.connect("mongodb://127.0.0.1:27017/userManagementDB");
+    console.log("✅ MongoDB Connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:", err.message);
     process.exit(1);
   }
 };

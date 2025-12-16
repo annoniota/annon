@@ -3,21 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login</title>
   </head>
   <body>
     <h1>Login</h1>
-    <%if(error){%>
-    <p style="color: red">Error: <%=error%></p>
-    <%}%>
 
-    <form action="/user/login" method="post">
-      <label for="">Email</label>
-      <input type="text" name="email" />
-      <br />
-      <label for="">password</label>
-      <input type="text" name="password" />
-      <input type="submit" name="" id="" />
+    <% if (error) { %>
+    <p style="color: red"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value="<%= formData.email || '' %>"
+          required
+        />
+      </div>
+
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" required />
+      </div>
+
+      <button type="submit">Login</button>
     </form>
+
+    <p><a href="/register">Don't have an account? Register</a></p>
   </body>
 </html>

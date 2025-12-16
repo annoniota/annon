@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+  </head>
+  <body>
+    <h1>Edit Profile</h1>
+
+    <% if (error) { %>
+    <p style="color: red"><%= error %></p>
+    <% } %>
+
+    <form action="/users/<%= user._id %>" method="POST">
+      <div>
+        <label>Username:</label>
+        <input
+          type="text"
+          name="username"
+          value="<%= user.username %>"
+          required
+        />
+      </div>
+
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= user.email %>" required />
+      </div>
+
+      <hr />
+      <h3>Change Password (Optional)</h3>
+
+      <div>
+        <label>Current Password:</label>
+        <input type="password" name="currentPassword" />
+        <br /><small>Required only if changing password</small>
+      </div>
+
+      <div>
+        <label>New Password:</label>
+        <input type="password" name="newPassword" minlength="6" />
+        <br /><small>Leave blank to keep current password</small>
+      </div>
+
+      <div>
+        <button type="submit">Update Profile</button>
+        <a href="/users/<%= user._id %>">Cancel</a>
+      </div>
+    </form>
+  </body>
+</html>

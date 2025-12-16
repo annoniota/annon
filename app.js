@@ -1,27 +1,37 @@
 const express = require("express");
 const session = require("express-session");
-const app = express();
-const userRoute = require("./routes/userRoutes");
 const connectDb = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
+
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(
   session({
-    secret: "KEY",
+    secret: "your-secret-key-change-in-production",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 24 hours
+    },
   })
 );
+
 app.set("view engine", "ejs");
 
-app.use("/user", userRoute);
 connectDb();
 
+app.use("/", userRoutes);
+
 app.use((req, res) => {
-  res.render("404");
+  res.status(404).render("404");
 });
 
-// app.use("/", require("./routes/authRoutes"));
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
 
 app.listen(3000, () => console.log("Server running on http://localhost:3000/"));
